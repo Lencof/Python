@@ -1,6 +1,8 @@
 from math import asin, atan, cos, radians, sin, sqrt, tan
+import os # use os 
+import sys  # use sys 
 
-
+# create def haversine_distance(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
 def haversine_distance(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
     """
     Calculate great circle distance between two points in a sphere,
@@ -53,4 +55,4 @@ def haversine_distance(lat1: float, lon1: float, lat2: float, lon2: float) -> fl
 if __name__ == "__main__":
     import doctest
 
-    doctest.testmod()
+    doctest.testmod() # close 
