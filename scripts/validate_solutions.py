@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 import importlib.util
-import json
-import os
-import pathlib
+import json # use json
+import os # use os
+import pathlib # use pathlib
 from types import ModuleType
 from typing import Dict, List
 
-import pytest
-import requests
+import pytest # use pytest
+import requests # use requests
 
 PROJECT_EULER_DIR_PATH = pathlib.Path.cwd().joinpath("project_euler")
 PROJECT_EULER_ANSWERS_PATH = pathlib.Path.cwd().joinpath(
@@ -17,7 +17,7 @@ PROJECT_EULER_ANSWERS_PATH = pathlib.Path.cwd().joinpath(
 with open(PROJECT_EULER_ANSWERS_PATH) as file_handle:
     PROBLEM_ANSWERS: Dict[str, str] = json.load(file_handle)
 
-
+# create def convert_path_to_module(file_path: pathlib.Path) -> ModuleType:
 def convert_path_to_module(file_path: pathlib.Path) -> ModuleType:
     """Converts a file path to a Python module"""
     spec = importlib.util.spec_from_file_location(file_path.name, str(file_path))
@@ -25,7 +25,7 @@ def convert_path_to_module(file_path: pathlib.Path) -> ModuleType:
     spec.loader.exec_module(module)
     return module
 
-
+# create def all_solution_file_paths() -> List[pathlib.Path]:
 def all_solution_file_paths() -> List[pathlib.Path]:
     """Collects all the solution file path in the Project Euler directory"""
     solution_file_paths = []
@@ -38,14 +38,14 @@ def all_solution_file_paths() -> List[pathlib.Path]:
             solution_file_paths.append(file_path)
     return solution_file_paths
 
-
+# create def get_files_url() -> str:
 def get_files_url() -> str:
     """Return the pull request number which triggered this action."""
     with open(os.environ["GITHUB_EVENT_PATH"]) as file:
         event = json.load(file)
     return event["pull_request"]["url"] + "/files"
 
-
+# create def added_solution_file_path() -> List[pathlib.Path]:
 def added_solution_file_path() -> List[pathlib.Path]:
     """Collects only the solution file path which got added in the current
     pull request.
@@ -69,7 +69,7 @@ def added_solution_file_path() -> List[pathlib.Path]:
         solution_file_paths.append(filepath)
     return solution_file_paths
 
-
+# create def collect_solution_file_paths() -> List[pathlib.Path]:
 def collect_solution_file_paths() -> List[pathlib.Path]:
     if os.environ.get("CI") and os.environ.get("GITHUB_EVENT_NAME") == "pull_request":
         # Return only if there are any, otherwise default to all solutions
