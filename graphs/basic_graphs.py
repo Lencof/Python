@@ -1,4 +1,4 @@
-from collections import deque
+from collections import deque # use deque
 
 if __name__ == "__main__":
     # Accept No. of Nodes and edges
